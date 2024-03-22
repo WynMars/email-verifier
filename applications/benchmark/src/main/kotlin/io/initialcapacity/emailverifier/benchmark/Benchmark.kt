@@ -49,6 +49,12 @@ class Benchmark(
         }.also { duration ->
             stop()
             logger.info("benchmark finished in $duration")
+
+            //set benchmark to process 50 registrations per second
+            val registrationPerSecond: Float = registrationCount.toFloat().div(duration.inWholeSeconds)
+            if (registrationPerSecond < 50.0000) {
+                logger.error("Benchmark failed for 50 registration per second. Current registration per second is $registrationPerSecond")
+            }
         }
     }
 
