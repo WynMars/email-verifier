@@ -63,10 +63,10 @@ fun main(): Unit = runBlocking {
     // TODO - read the queue name from the environment
 //    val registrationRequestQueue = RabbitQueue("registration-request")
     val registrationRequestQueueName = System.getenv("REGISTRATION_REQUEST_QUEUE") ?: "registration-request"
+    val registrationRequestQueue = RabbitQueue(registrationRequestQueueName)
 
     // TODO - read the routing key from the environment
     val registrationRequestRoutingKey = System.getenv("REGISTRATION_REQUEST_ROUTING_KEY") ?: "42"
-    val registrationRequestQueue = RabbitQueue(registrationRequestQueueName)
     connectionFactory.declareAndBind(
         exchange = registrationRequestExchange,
         queue = registrationRequestQueue,
