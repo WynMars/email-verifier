@@ -17,6 +17,7 @@ import java.util.concurrent.TimeUnit
 import kotlin.time.Duration
 import kotlin.time.Duration.Companion.milliseconds
 import kotlin.time.measureTime
+import kotlin.system.exitProcess
 
 
 class Benchmark(
@@ -54,6 +55,7 @@ class Benchmark(
             val registrationPerSecond: Float = registrationCount.toFloat().div(duration.inWholeSeconds)
             if (registrationPerSecond < 50.0000) {
                 logger.error("Benchmark failed for 50 registration per second. Current registration per second is $registrationPerSecond")
+                exitProcess(-1)
             }
         }
     }

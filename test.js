@@ -3,15 +3,14 @@ import { check } from 'k6';
 
 export const options = {
   duration: '30s',
-  vus: 10,
+  target: 10,
 };
 
 export default function () {
   const url = 'http://localhost:8081/request-registration';
-    const email = 'test' + Math.floor(Math.random() * 10001) + '@example.com'
-    const payload = JSON.stringify({
-        email: email,
-    });
+  const payload = JSON.stringify({
+          "email": "test@example.com"
+  })
 
 
   const params = {
